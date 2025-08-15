@@ -5,6 +5,7 @@ const app = express()
 
 const conn = require('./db/conn')
 const Alunos = require('./models/Alunos')
+const alunosRoutes = require('./routes/alunosRoutes')
 
 
 app.engine('handlebars', exphs.engine())
@@ -15,6 +16,7 @@ app.use(express.json())
 
 app.use(express.static('public'))
 
+app.use('/alunos', alunosRoutes)
 
 conn.sync().then(() => {
     console.log('Conectado ao Banco de Dados...')
