@@ -14,8 +14,9 @@ a {
 }
 
 .container {
-    max-width: 450px;
-    margin: 2em auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 header .navbar{
@@ -59,16 +60,16 @@ header .navbar{
     h1 {
         font-size: 32px;
         font-weight: bold;
+        text-align: center;
     }
 }
 
 .alunos-buscador {
     padding-top: 20px;
-    width: 600px;
-    
+    text-align: center;
+
     input {
-        width: 50%;
-        padding: 10px;
+        padding: 12px;
         border: 1px solid #bebcbc;
         border-radius: 6px;
         font-size: 16px;
@@ -91,6 +92,50 @@ header .navbar{
     }
 }
 
+
+/* ! Tabela de dados dos alunos */
+
+.alunos-table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 2.5rem;
+    max-width: 1420px;
+    margin: 0 auto;
+}
+
+.alunos-table-dados {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    thead {
+        background-color: linear-gradient(135deg, #3498db, #2980b9);
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #e9e8e8;
+        }
+    }
+
+    tbody {
+        tr {
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #f8f9fa;
+            }
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #aeecef;
+        }
+    }
+}
 
 /* ! Formulário de Cadastrar estudantes */
 .form-container-cadastro {
@@ -152,3 +197,4 @@ header .navbar{
         background-color: #2980b9;
     }
 }
+

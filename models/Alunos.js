@@ -10,11 +10,11 @@ const Alunos = db.define('Alunos', {
     },
     
     cpf: {
-        type: DataTypes.STRING(14),
+        type: DataTypes.STRING(11),
         allowNull: false,
         unique: true,
         validate: {
-            is: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
+            is: /^\d{11}$/
         }
     },
 
@@ -24,10 +24,10 @@ const Alunos = db.define('Alunos', {
     },
 
     telefone: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(11),
         allowNull: false,
         validate: {
-            is: /^(\+\d{1,3})?\d{10,15}$/
+            is: /^\d{11}$/
         }
     },
 
@@ -37,7 +37,7 @@ const Alunos = db.define('Alunos', {
     },
 
     instituicao: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(100),
         allowNull: false,
     },
 

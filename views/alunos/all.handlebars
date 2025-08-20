@@ -6,4 +6,36 @@
         <input type="text" placeholder="Buscas por CPF...">
         <button>Buscar</button>
     </div>
+
+        <div class="alunos-table-container">
+            <table class="alunos-table-dados">
+                <thead>
+                    <tr>
+                        <th>CPF</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Curso</th>
+                        <th>Instituição</th>
+                        <th>Data de Cadastro</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                {{#each alunos}}
+                    <tbody>
+                        <tr>
+                            <td>{{this.cpf}}</td>
+                            <td>{{this.nome}}</td>
+                            <td>{{this.telefone}}</td>
+                            <td>{{this.curso}}</td>
+                            <td>{{this.instituicao}}</td>
+                            <td>{{this.data_cadastro}}</td>
+                            <td>Editar</td>
+                            <td>Excluir</td>
+                        </tr>
+                    </tbody>
+                {{/each}}
+            </table>
+        </div>
 </div>
