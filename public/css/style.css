@@ -134,6 +134,18 @@ header .navbar{
             padding: 1rem;
             border-bottom: 1px solid #aeecef;
         }
+
+        #form-btn-delete button{
+            background-color: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .btn-aluno-edit {
+            font-size: 20px;
+            color: #1788d3;
+        }
     }
 }
 
@@ -198,3 +210,48 @@ header .navbar{
     }
 }
 
+/* ! Seach */
+.search-container h2{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/*! Página de ERROR */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color:#ffe5e5;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    
+    h2 {
+        color: #c53030;
+        font-size: 34px;
+        font-weight: bold;
+        padding: 8px;
+    }
+     
+    p {
+        color:#e53e3e;
+        margin-bottom:1.5rem;
+        font-size: 18px;
+    }
+
+    button {
+        background-color:#e53e3e;
+        padding: 10px;
+        border-radius: 8px;
+        color: #fff;
+        border: none;
+        font-size: 18px;
+        font-weight: 600;
+        transition: background-color 0.2s;
+        cursor: pointer;
+    }
+}

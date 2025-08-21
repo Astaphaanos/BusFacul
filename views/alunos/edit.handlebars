@@ -1,0 +1,50 @@
+
+<form action="/alunos/edit" method="post" class="form-container-cadastro">
+    <input type="hidden" name="id" value="{{alunos.id}}">
+
+    <h1>Editando cadastro de: {{alunos.nome}} </h1>
+
+    <div class="form-control">
+        <label for="nome">Nome: </label>
+        <input type="text" name="nome" placeholder="Digite o nome completo" value="{{alunos.nome}}">
+    </div>
+
+    <div class="form-control">
+        <label for="cpf">CPF: </label>
+        <input 
+        id="cpf"
+        type="text" 
+        name="cpf" 
+        maxlength="14"
+        placeholder="000.000.000-00"
+        value="{{alunos.cpf}}"
+        >
+    </div>
+
+    <div class="form-control">
+        <label for="telefone">Telefone: </label>
+        <input 
+        id="telefone"
+        type="text" 
+        name="telefone" 
+        maxlength="15"
+        placeholder="(00) 00000-0000"
+        value="{{alunos.telefone}}"
+        >
+    </div>
+
+    <div class="form-control">
+        <label for="curso">Curso: </label>
+        <input type="text" name="curso" placeholder="Digite o curso" value="{{alunos.curso}}">
+    </div>
+
+    <div class="form-control">
+        <label for="instituicao">Instituição: </label>
+        <input type="text" name="instituicao" placeholder="Nome da instituição" value="{{alunos.instituicao}}">
+    </div>
+
+    <div class="bnt-cadastrar">
+        <input type="submit" value="Editar">
+    </div>
+
+</form>

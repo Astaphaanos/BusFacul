@@ -6,6 +6,10 @@ const AlunosController = require('../controllers/AlunosController')
 
 router.get('/add', AlunosController.createAlunos)
 router.post('/add', AlunosController.createAlunosSave)
+router.post('/delete', AlunosController.alunosDelete)
+router.get('/edit/:id', AlunosController.alunosEdit)
+router.post('/edit', AlunosController.alunosEditSave)
+router.get('/search', AlunosController.searchAlunos)
 router.get('/', AlunosController.showAlunos)
 
 

@@ -1,0 +1,50 @@
+<div class="search-container">
+    {{#if error}}
+        <p style="color:red">{{error}}</p>
+    {{else}}
+    <h2>Resultado da busca:</h2>
+    
+    <div class="alunos-table-container">
+        <table class="alunos-table-dados">
+            <thead>
+                <tr>
+                    <th>CPF</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Curso</th>
+                    <th>Instituição</th>
+                    <th>Data de Cadastro</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td>{{alunos.cpf}}</td>
+                    <td>{{alunos.nome}}</td>
+                    <td>{{alunos.telefone}}</td>
+                    <td>{{alunos.curso}}</td>
+                    <td>{{alunos.instituicao}}</td>
+                    <td>{{alunos.data_cadastro}}</td>
+    
+                    <td>
+                        <a href="/alunos/edit/{{alunos.id}}" class="btn-alunos-edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+    
+                    <td>
+                        <form action="/alunos/delete" method="post" id="form-btn-delete">
+                            <input type="hidden" name="id" value="{{alunos.id}}">
+                            <button type="submit">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/if}}
+</div>

@@ -10,5 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
     if (telefoneInput) {
       VMasker(telefoneInput).maskPattern("(99) 99999-9999")
     }
+
+    const cpfSearch = document.getElementById("cpfSearch");
+    if (cpfSearch) {
+      VMasker(cpfSearch).maskPattern("999.999.999-99");
+    }
   }
 })

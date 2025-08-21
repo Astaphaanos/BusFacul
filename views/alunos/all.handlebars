@@ -3,8 +3,10 @@
     <h1>Alunos Registrados: </h1>
 
     <div class="alunos-buscador">
-        <input type="text" placeholder="Buscas por CPF...">
-        <button>Buscar</button>
+        <form action="/alunos/search" method="get">
+            <input type="text" id="cpfSearch" name="cpf" placeholder="Buscas por CPF..." required>
+            <button type="submit">Buscar</button>
+        </form>
     </div>
 
         <div class="alunos-table-container">
@@ -31,8 +33,22 @@
                             <td>{{this.curso}}</td>
                             <td>{{this.instituicao}}</td>
                             <td>{{this.data_cadastro}}</td>
-                            <td>Editar</td>
-                            <td>Excluir</td>
+
+                            <td>
+                                <a href="/alunos/edit/{{this.id}}" class="btn-aluno-edit">
+                                  <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <form action="/alunos/delete" method="post" id="form-btn-delete">
+                                    <input type="hidden" name="id" value="{{this.id}}">
+                                    <button type="submit">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+
                         </tr>
                     </tbody>
                 {{/each}}
