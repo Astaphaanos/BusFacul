@@ -1,10 +1,20 @@
-
 <form action="/alunos/add" method="post" class="form-container-cadastro">
     <h1>Cadastrar Alunos: </h1>
 
+    {{#if message}}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    {{/if}}
+
     <div class="form-control">
         <label for="nome">Nome: </label>
-        <input type="text" name="nome" placeholder="Digite o nome completo">
+        <input 
+        type="text" 
+        name="nome" 
+        placeholder="Digite o nome completo" 
+        required 
+        {{#if aluno}} value="{{aluno.nome}}" {{/if}}>
     </div>
 
     <div class="form-control">
@@ -15,6 +25,8 @@
         name="cpf" 
         maxlength="14"
         placeholder="000.000.000-00"
+        required
+        {{#if aluno}} value="{{aluno.cpf}}" {{/if}}
         >
     </div>
 
@@ -26,17 +38,31 @@
         name="telefone" 
         maxlength="15"
         placeholder="(00) 00000-0000"
+        required
+        {{#if aluno}} value="{{aluno.telefone}}" {{/if}}
         >
     </div>
 
     <div class="form-control">
         <label for="curso">Curso: </label>
-        <input type="text" name="curso" placeholder="Digite o curso">
+        <input 
+        type="text" 
+        name="curso" 
+        placeholder="Digite o curso" 
+        required
+        {{#if aluno}} value="{{aluno.curso}}" {{/if}}>
+        
     </div>
 
     <div class="form-control">
         <label for="instituicao">Instituição: </label>
-        <input type="text" name="instituicao" placeholder="Nome da instituição">
+        <input 
+        type="text" 
+        name="instituicao" 
+        placeholder="Nome da instituição"
+        required
+        {{#if aluno}} value="{{aluno.instituicao}}" {{/if}}
+        >
     </div>
 
     <div class="bnt-cadastrar">

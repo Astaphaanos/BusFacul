@@ -11,6 +11,19 @@ module.exports = class AlunosController {
     //* CREATE POST
     static async createAlunosSave(req,res) {
         try {
+            // quantidades de vagas
+            const vagasMaximas = 59
+
+            //contando quantos alunos cadastrados
+            const totalAlunos = await Alunos.count()
+
+            // verificando se o total de alunos cadastrados ultrapassa a quantidade de vagas
+            if(totalAlunos >= vagasMaximas) {
+                return res.render('partials/error', {
+                    message: 'Desculpe, todas as vagas para o ônibus foram preenchidas!'
+                })
+            }
+
             const alunos = {
             nome: req.body.nome,
             cpf: req.body.cpf.replace(/\D/g, ''),
@@ -20,18 +33,32 @@ module.exports = class AlunosController {
         }
 
         await Alunos.create(alunos)
-
         res.redirect('/alunos')
+
         } catch(error) {
-            console.log('Erro ao criar aluno:', error)
-            res.status(500).send('Erro ao cadastrar aluno')
+            // Se tiver cpf duplicado, vai aparecer uma mensagem de erro
+            if(error.name === 'SequelizeUniqueConstraintError') {
+                const errorMessage = 'O CPF informado já está cadastrado. Por favor, verifique os dados.'
+                res.render('alunos/create', {message: errorMessage, alunos: req.body})
+            } else {
+                console.log('Erro ao criar aluno:', error)
+                res.status(500).send('Erro ao cadastrar aluno')
+            }
         }
     }
 
     //* Mostrar Dados dos alunos
     static async showAlunos(req,res) {
         try {
-            const alunos = await Alunos.findAll({raw: true})
+            const {order} = req.query // pegar os parametros de ordenação pela URL
+
+            let orderOption = [['data_cadastro', 'DESC']] // O padrão vai ser o mais recente (normal)
+            if (order === 'antigo') { // se o parametro 'order' for 'antigo' altera a ordenação
+                orderOption = [['data_cadastro', 'ASC']]
+            }
+            const alunos = await Alunos.findAll({raw: true, order: orderOption}) // aplica a ordenação
+
+            const totalAlunos = await Alunos.count()
 
             // formatação visual do cpf e telefone
             alunos.forEach(aluno => {
@@ -40,7 +67,7 @@ module.exports = class AlunosController {
                 aluno.data_cadastro = formatarData(aluno.data_cadastro)
             })
 
-            res.render('alunos/all', {alunos})
+            res.render('alunos/all', {alunos, totalAlunos})
         }catch(error) {
             console.log(error)
             res.status(500).render('partials/error', {message: 'Erro ao buscar aluno. Tente mais tarde!'})

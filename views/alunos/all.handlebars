@@ -9,6 +9,21 @@
         </form>
     </div>
 
+    <div class="filtro-container">
+        <div class="totalAlunos-container">
+            <span>Total de Alunos Cadastrados: {{totalAlunos}}</span>
+        </div>
+
+        <div class="filtro-historico">
+            <a href="/alunos?order=novo" class="btn-filtro">
+                <i class="fas fa-arrow-up"></i> Mais Recentes
+            </a>
+            <a href="/alunos?order=antigo" class="btn-filtro">
+                <i class="fas fa-arrow-down"></i> Mais Antigos
+            </a>
+        </div>
+    </div>
+
         <div class="alunos-table-container">
             <table class="alunos-table-dados">
                 <thead>

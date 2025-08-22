@@ -218,6 +218,30 @@ header .navbar{
     margin-top: 40px;
 }
 
+/* ! Container de filtro (mais recentes, mais antigos e total de alunos*/
+.filtro-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.filtro-historico {
+    .btn-filtro {
+        margin-right: 20px;
+        color: #000;
+        font-size: 18px;
+    
+        &:hover {
+            text-decoration: underline;
+        } 
+    }
+}
+
+.totalAlunos-container{
+    font-size: 18px;  
+}
+
 /*! Página de ERROR */
 
 .error-container {
@@ -255,3 +279,11 @@ header .navbar{
         cursor: pointer;
     }
 }
+
+/* ! Mensagem de erro cpf duplicado*/
+
+.alert-danger {
+    padding-bottom: 14px;
+    color: #c53030;
+    font-weight: 600;
+} 
