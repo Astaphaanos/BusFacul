@@ -62,12 +62,12 @@ module.exports = class AlunosController {
             const id = req.body.id
 
             const alunos = {
-            nome: req.body.nome,
-            cpf: req.body.cpf.replace(/\D/g, ''),
-            telefone: req.body.telefone.replace(/\D/g, ''),
-            curso: req.body.curso,
-            instituicao: req.body.instituicao
-        }
+                nome: req.body.nome,
+                cpf: req.body.cpf.replace(/\D/g, ''),
+                telefone: req.body.telefone.replace(/\D/g, ''),
+                curso: req.body.curso,
+                instituicao: req.body.instituicao
+            }
 
         await Alunos.update(alunos, { where: {id:id} })
 
@@ -82,16 +82,16 @@ module.exports = class AlunosController {
     static async alunosDelete(req, res) {
         const id = req.body.id
 
-        await Alunos.destroy( {where: {id:id} })
+        await Alunos.destroy( { where: {id:id} })
         res.redirect('/alunos')
     }
 
     //* SEARCH ALUNOS (buscador por cpf)
     static async searchAlunos(req,res) {
-        let cpf = (req.query.cpf).replace(/\D/g, "") 
+        const cpf = (req.query.cpf).replace(/\D/g, "") 
 
         try{
-            const alunos = await Alunos.findOne({where: {cpf}})
+            const alunos = await Alunos.findOne( { where: {cpf} })
 
             if(!alunos) {
                 return res.render('partials/error', {message: "Aluno não encontrado"})
