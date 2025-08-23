@@ -287,3 +287,15 @@ header .navbar{
     color: #c53030;
     font-weight: 600;
 } 
+
+/* ! Botão 'Ativer' da lista de espera */
+.btn-ativar button {
+    padding: 10px;
+    border: none;
+    background-color: #2980b9;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;   
+    font-size: 16px;
+    cursor: pointer;
+ }

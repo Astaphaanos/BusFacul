@@ -10,6 +10,8 @@ router.post('/delete', AlunosController.alunosDelete)
 router.get('/edit/:id', AlunosController.alunosEdit)
 router.post('/edit', AlunosController.alunosEditSave)
 router.get('/search', AlunosController.searchAlunos)
+router.get('/lista-espera', AlunosController.showEspera)
+router.post('/ativar/:id', AlunosController.ativarAluno)
 router.get('/', AlunosController.showAlunos)
 
 

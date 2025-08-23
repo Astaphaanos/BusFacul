@@ -1,6 +1,6 @@
 
 <div class="alunos-container">
-    <h1>Alunos Registrados: </h1>
+    <h1>Alunos Registrados: (Vagas: {{vagasMaximas}}- Disponíveis: {{totalVagasDisponiveis}})</h1>
 
     <div class="alunos-buscador">
         <form action="/alunos/search" method="get">
@@ -10,10 +10,6 @@
     </div>
 
     <div class="filtro-container">
-        <div class="totalAlunos-container">
-            <span>Total de Alunos Cadastrados: {{totalAlunos}}</span>
-        </div>
-
         <div class="filtro-historico">
             <a href="/alunos?order=novo" class="btn-filtro">
                 <i class="fas fa-arrow-up"></i> Mais Recentes
@@ -39,7 +35,7 @@
                     </tr>
                 </thead>
 
-                {{#each alunos}}
+                {{#each ativos}}
                     <tbody>
                         <tr>
                             <td>{{this.cpf}}</td>

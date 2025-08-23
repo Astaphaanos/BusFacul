@@ -45,6 +45,11 @@ const Alunos = db.define('Alunos', {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     },
+
+    status: {
+        type: DataTypes.ENUM('ativo', 'espera'),
+        defaultValue: 'espera'
+    }
 }, {
     timestamps: false,
     indexes: [

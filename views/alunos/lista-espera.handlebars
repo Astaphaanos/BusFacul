@@ -1,0 +1,47 @@
+<div class="alunos-table-container">
+  <h1 style="text-align: center; margin-top: 40px">Lista de Espera: </h1>
+
+<div class="filtro-container">
+        <div class="filtro-historico">
+            <a href="/alunos/lista-espera?order=novo" class="btn-filtro">
+                <i class="fas fa-arrow-up"></i> Mais Recentes
+            </a>
+            <a href="/alunos/lista-espera?order=antigo" class="btn-filtro">
+                <i class="fas fa-arrow-down"></i> Mais Antigos
+            </a>
+        </div>
+</div>
+
+  <table class="alunos-table-dados">
+    <thead>
+      <tr>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Curso</th>
+        <th>Instituição</th>
+        <th>Data de Cadastro</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    {{#each espera}}
+      <tbody>
+        <tr>
+          <td>{{this.cpf}}</td>
+          <td>{{this.nome}}</td>
+          <td>{{this.telefone}}</td>
+          <td>{{this.curso}}</td>
+          <td>{{this.instituicao}}</td>
+          <td>{{this.data_cadastro}}</td>
+
+          <td>
+            <form action="/alunos/ativar/{{this.id}}" method="post" class="btn-ativar">
+              <button type="submit">Ativar</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    {{/each}}
+  </table>
+</div>
