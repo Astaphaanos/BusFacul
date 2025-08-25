@@ -1,16 +1,23 @@
 <div class="alunos-table-container">
-  <h1 style="text-align: center; margin-top: 40px">Lista de Espera: </h1>
 
-<div class="filtro-container">
-        <div class="filtro-historico">
-            <a href="/alunos/lista-espera?order=novo" class="btn-filtro">
-                <i class="fas fa-arrow-up"></i> Mais Recentes
-            </a>
-            <a href="/alunos/lista-espera?order=antigo" class="btn-filtro">
-                <i class="fas fa-arrow-down"></i> Mais Antigos
-            </a>
-        </div>
-</div>
+  {{#if mensagemSucesso}}
+      <div id="success-alert" class="alert alert-success" role="alert">
+          {{mensagemSucesso}}
+      </div>
+  {{/if}}
+  
+  <h1 style="text-align: center; margin-top: 50px">Lista de Espera: </h1>
+
+  <div class="filtro-container-espera">
+    <a href="/alunos/lista-espera?order=novo" class="btn-filtro">
+      <i class="fas fa-arrow-up"></i>
+      Mais Recentes
+    </a>
+    <a href="/alunos/lista-espera?order=antigo" class="btn-filtro">
+      <i class="fas fa-arrow-down"></i>
+      Mais Antigos
+    </a>
+  </div>
 
   <table class="alunos-table-dados">
     <thead>
@@ -21,6 +28,7 @@
         <th>Curso</th>
         <th>Instituição</th>
         <th>Data de Cadastro</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -36,10 +44,24 @@
           <td>{{this.data_cadastro}}</td>
 
           <td>
-            <form action="/alunos/ativar/{{this.id}}" method="post" class="btn-ativar">
+            <form
+              action="/alunos/ativar/{{this.id}}"
+              method="post"
+              class="btn-ativar"
+            >
               <button type="submit">Ativar</button>
             </form>
           </td>
+
+          <td>
+            <form action="/alunos/lista-espera/delete" method="post" id="form-btn-delete">
+              <input type="hidden" name="id" value="{{this.id}}" />
+              <button type="submit">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+
         </tr>
       </tbody>
     {{/each}}

@@ -32,7 +32,13 @@ module.exports = class AlunosController {
             }
 
             await Alunos.create(alunos)
-            res.redirect('/alunos')
+
+            if(status === 'espera') {
+                res.redirect('/alunos/lista-espera?mensagem=sucesso-espera')
+            } else {
+                res.redirect('/alunos?mensagem=sucesso-ativo')
+            }
+
 
         } catch(error) {
             // Se tiver cpf duplicado, vai aparecer uma mensagem de erro
@@ -49,7 +55,7 @@ module.exports = class AlunosController {
     //* Mostrar Dados dos alunos
     static async showAlunos(req,res) {
         try {
-            const {order} = req.query // pegar os parametros de ordenação pela URL
+            const {order, mensagem} = req.query // pegar os parametros de ordenação pela URL
 
             let orderOption = [['data_cadastro', 'DESC']] // O padrão vai ser o mais recente (normal)
 
@@ -73,7 +79,15 @@ module.exports = class AlunosController {
             const vagasMaximas = 2
             const totalAtivos = ativos.length
             const totalVagasDisponiveis = vagasMaximas - totalAtivos
-            res.render('alunos/all', {ativos, totalVagasDisponiveis, vagasMaximas})
+
+            // Exibir uma mensagem de sucesso quando o aluno for cadastrado na tabela principal de ativos
+            let mensagemSucesso = null
+            if(mensagem === 'sucesso-ativo') {
+                mensagemSucesso = 'Aluno cadastrado com sucesso e inserido na lista principal!'
+            }
+
+
+            res.render('alunos/all', {ativos, totalVagasDisponiveis, vagasMaximas, mensagemSucesso})
 
         } catch(error) {
             console.log(error)
@@ -149,7 +163,7 @@ module.exports = class AlunosController {
     //* Lista de Espera 
     static async showEspera(req,res) {
         try {
-            const { order } = req.query; 
+            const { order, mensagem} = req.query; 
 
             let orderOption = [['data_cadastro', 'DESC']]; // Padrão: mais recente primeiro
 
@@ -171,13 +185,27 @@ module.exports = class AlunosController {
                 aluno.data_cadastro = formatarData(aluno.data_cadastro);
             });
 
-            res.render('alunos/lista-espera', { espera })
+            // Exibir uma mensagem de sucesso quando o aluno for cadastrado na lista de espera
+            let mensagemSucesso = null
+            if(mensagem === 'sucesso-espera') {
+                mensagemSucesso = 'Aluno cadastrado com sucesso e inserido na lista de espera!'
+            }
+
+            res.render('alunos/lista-espera', { espera, mensagemSucesso })
 
 
         } catch(error) {
             console.log(error);
             res.status(500).render('partials/error', { message: 'Erro ao buscar a lista de espera. Tente mais tarde!' });
         }
+    }
+
+    //* DELETE da lista de espera
+    static async alunosEsperaDelete(req, res) {
+        const id = req.body.id
+
+        await Alunos.destroy( { where: {id:id} })
+        res.redirect('/alunos/lista-espera')
     }
 
     //* Status (para ativar o aluno)
